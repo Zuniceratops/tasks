@@ -264,3 +264,32 @@ h1, h2, h3, h4, h5, h6 {
    transition: translate3d(0,-50%,0);
    transition: opacite .2s linear;
 }
+
+/* Statistics */
+
+.statistics {
+    background-color: #95e1d3;
+}
+.stat {
+    display: flex;
+}
+.stat_iteam {
+    padding: 70px 25px;
+    flex: 1 1 0;
+    border-left: 1px solid #b5eae0;
+    text-align: center;
+    color: #fff
+}
+.stat_iteam:last-child {
+    border-right: 1px solid #b5eae0;
+}
+.stat_count {
+    margin-bottom: 10px;
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 1;
+}
+.start_text {
+    font-size: 14px;
+    text-transform: uppercase;
+}
