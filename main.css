@@ -235,9 +235,7 @@ hr {
     margin-top: 80px;
 }
 .about_item {
-    white-space: 30%;
-    position: relative;
-    background: #95e1d3;
+    width: 380px;
 }
 .about_item:hover .about_img  {
     transform: translate3d(-10px,-10px,0);
@@ -430,13 +428,14 @@ hr {
     text-transform: uppercase;
 }
 
-/*saction-grey*/
-.saction-grey {
+/*section-grey*/
+.section-grey {
     margin-top: 120px;
     background-color: #f8f8f8;
 }
 .reviews {
-    padding: 0 110px;
+    padding: 0 210px;
+    position: relative;
 }
 .reviews_item {
     position: relative;
@@ -450,7 +449,8 @@ hr {
     z-index: 1;
 }
 .reviews_text {
-    font-size: 24px;
+    margin-bottom: 15px;
+    font-size: 16px;
     font-style: italic;
     font-weight: 100;
     color: #999;
@@ -468,6 +468,82 @@ hr {
     height: 3px;
     margin-right: 10px;
     background-color: #f38181;
+}
+.reviews_btn {
+    font-size: 0;
+    color: transparent;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
 
+    transform: translateY(-50%);
+}
+.reviews_btn::after {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
 
+    border-top: 2px solid #ccc;
+    border-left: 2px solid #ccc;
+}
+.reviews_btn--prev {
+    left: 0;
+    transform: rotate(-45deg); 
+}
+.reviews_btn--next {
+    right: 0;
+    transform: rotate(135deg); 
+}
+
+/*social*/
+.social {
+    display: flex;
+    justify-content: center;
+}
+.social_item {
+    width: 55px;
+    height: 55px;
+    padding: 12px 10px;
+    background-color: #fce38a;
+    border-right: 1px solid #f38181;
+    font-size: 30px;
+
+    text-decoration: none;
+    color: #f38181;
+    line-height: 1;
+
+    transform: background .1s linear, color .1s linear;
+}
+.social_item:hover {
+    background-color: #f38181;
+    color: #fce38a;
+}
+.social_item:last-child {
+    border-right: 0;
+}
+.card_inner {
+    position: relative;
+    background-color: #95e1d3;
+}
+.card_info {
+    margin-top: 20px;
+
+    text-align: center;
+}
+.card_name {
+    font-size: 14px;
+    color: #333;
+    text-transform: uppercase;
+}
+.card_prof {
+    font-size: 15px;
+    font-style: italic;
+    color: #999;
+}
+
+/*logos*/
+.logos {
+    display: flex;
+    justify-content: space-between;
 }
