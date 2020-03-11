@@ -32,6 +32,20 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     z-index: 1000;
 }
+.header--fixed {
+    background-color: #ea8484;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    transform: translate3d(0,0,0);
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+}
+.header.active {
+    background-color: #ea8484;
+}
 .header_inner {
     display: flex;
     justify-content: space-between;
@@ -44,6 +58,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .nav {
     font-size: 14 px;
+}
+.nav.active {
+    display: none;
 }
 .nav_link {
     display: inline-block;
@@ -76,6 +93,72 @@ h1, h2, h3, h4, h5, h6 {
 .nav_link:hover.active::after {
     opacity: 1;
 }
+
+/* Nav_toggle */
+    .nav_toggle {
+        width: 30px;
+        padding: 10px 0;
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        z-index: 1;
+    }
+    .nav_toggle:focuse {
+        outline: 0;
+    }
+    .nav_toggle_item {
+        display: none;
+        width: 100%;
+        height: 3px;
+        background-color: white;
+
+        font-size: 0;
+        color: transparent;
+
+        border: 0;
+        background: none;
+        cursor: pointer;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+
+        transition: transform .2s linear;
+    }
+    .nav_toggle.active  .nav_toggle_item{
+        background: none;
+    }
+    .nav_toggle.active  .nav_toggle_item::before{
+        transform-origin: left top;
+        transform: rotate(45deg) translateX(-2px);
+    }
+    .nav_toggle.active  .nav_toggle_item::after{
+        transform-origin: left bottom;
+        transform: rotate(-45deg) translateX(-3px);
+    }
+    .nav_toggle_item::before, 
+    .nav_toggle_item::after { 
+        content: "";
+        display: block;
+        width: 100%;
+        height: 3px;
+
+        position: absolute;
+        background-color: white;
+        left: 0;
+        z-index: 1;
+
+        transition: background .2s linear;
+    }
+    .nav_toggle_item::before {
+        top: -8px;
+    }
+    .nav_toggle_item::after {
+        top: 8px;
+    }
 hr {
     margin: 40px 0;
     display: block;
@@ -89,6 +172,8 @@ hr {
     overflow: hidden;
 }
 .intro {
+    min-height: 820px;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -267,7 +352,7 @@ hr {
    text-transform: uppercase;
    font-weight: 700;
    text-align: center;
-   opacity: 1;
+   opacity: 0;
    position: absolute;
    top: 50%;
    left: 0;
@@ -315,6 +400,7 @@ hr {
     display: flex;
     flex-wrap: wrap;
     padding-top: 50px;
+    justify-content: center;
 }
 .service_item {
     width: 33.333%;
@@ -459,7 +545,11 @@ hr {
     padding: 0 210px;
     position: relative;
 }
+.reviews .slick-slider {
+    padding: 0 110px;
+}
 .reviews_item {
+    min-height: 210px;
     position: relative;
     padding-left: 255px;
 }
@@ -495,32 +585,44 @@ hr {
     margin-right: 10px;
     background-color: #f38181;
 }
-.reviews_btn {
+
+.slick-arrow {
+    display: block;
     font-size: 0;
     color: transparent;
     position: absolute;
     top: 50%;
     z-index: 1;
 
+    border: 0;
+    background: none;
+    cursor: pointer;
+
     transform: translateY(-50%);
 }
-.reviews_btn::after {
+.slick-arrow:focus {
+    outline: 0;
+}
+/* .slick-arrow::after {
     content: '';
     display: block;
     width: 16px;
     height: 16px;
 
-    border-top: 2px solid #ccc;
-    border-left: 2px solid #ccc;
-}
-.reviews_btn--prev {
+    border-top: 2px solid rgb(218, 74, 74);
+    border-left: 2px solid rgb(187, 51, 51);
+    
+} */
+
+/* .slick-prev {
     left: 0;
-    transform: rotate(-45deg); 
-}
-.reviews_btn--next {
-    right: 0;
     transform: rotate(135deg); 
-}
+} */
+
+/* .slick-prev::after  {
+    right:0px;
+    transform: rotate(180deg); 
+} */
 
 /*social*/
 .social {
@@ -970,6 +1072,9 @@ hr {
     .intro_title {
         font-size: 120px;
     }
+    .slider_inner {
+        width: 150px;
+    }
 
     /* Reviews */
     .reviews_photo {
@@ -983,6 +1088,9 @@ hr {
 @media (max-width: 990px) {
     .intro_suptitle {
         font-size: 32px;
+    }
+    .slider_inner {
+        width: 150px;
     }
     .intro_title {
         font-size: 80px;
@@ -1033,9 +1141,38 @@ hr {
     }
 }
 @media (max-width: 770px) {
+    /* Intro */
+    .intro {
+        min-height: 650px;
+    }
+    .slider_inner{
+        width: 170px;
+    }
     /* Nav*/
     .nav {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fb9191;
+    }
+    .nav.active {
+        display: block;
+    }
+    .nav_link {
+        display: block;
+        margin: 0;
+        padding: 8px 20px;
+    }
+    .nav_toggle_item {
+        display: block;
+        background: #fff;
+    }
+
+    /* Header */
+    .header {
+        padding: 10px 0;
     }
 
     /* Section*/
@@ -1067,6 +1204,7 @@ hr {
     /* Services */
     .services {
         justify-content: center;
+
     }
     .section_devices {
         padding-bottom: 0;
@@ -1090,7 +1228,8 @@ hr {
     }
 
      /* Reviews */
-     .reviews {
+     
+     .reviews .slick-slider{
         padding: 0 60px;
      }
      .reviews_photo {
@@ -1152,11 +1291,21 @@ hr {
 
 @media (max-width: 575px) {
     /* Intro */
+    .intro {
+        min-height: 650px;
+    }
+    .slider_inner{
+        width: 70px;
+    }
     .intro_suptitle {
         font-size: 22px;
     }
     .intro_title {
         font-size: 40px;
+    }
+    /* Nav */
+    .nav.active {
+        display: block;
     }
 
     /* Section*/
@@ -1194,13 +1343,31 @@ hr {
         right: -40px;
     }
     /* Reviews */
-    .reviews {
+    .reviews .slick-slider{
         padding: 0;
     }
-    .reviews_btn {
+    .slick-slider{
         top: 18%;
     }
-
+    /* Reviews */
+     
+    .reviews .slick-slider{
+        padding: 0 30px;
+     }
+     .reviews_photo {
+        position: static;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    .reviews_item {
+        padding-left: 0;
+    }
+    .reviews_text {
+        font-size: 8px;
+    }
+    .reviews_author {
+        font-size: 10px;
+    }
     /* Logos */
     .logos {
         flex-wrap: wrap;
